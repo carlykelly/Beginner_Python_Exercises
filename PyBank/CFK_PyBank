@@ -14,6 +14,8 @@ maximum = 0
 minimum = 0
 max_date = "test"
 min_date = "test"
+last_record = 0
+go_flag = True
 budget_data_csv = os.path.join("Resources", "budget_data.csv")
 with open(budget_data_csv) as csvfile:
     
@@ -26,30 +28,25 @@ with open(budget_data_csv) as csvfile:
         daily_profit = record[1]
         num_of_months.add(months)
         profit.append(int(daily_profit))
-        for x in range(len(profit)-1):
-            daily_change = profit[x+1]-profit[x]
+# comparing the profit to the following month to determine change in profit.
+#adding change of profit to a list
+#Boolyan necessary so the first difference (cell1 - 0) isn't included in avg calculations
+        if go_flag == False:
+            daily_change = int(record[1]) - last_record
             daily_changes.append(daily_change)
+        last_record = int(record[1])
+ #determining the max change and assigning the day on which this occurs       
+        
         if daily_change > maximum:
             maximum = daily_change
             max_date = months
         if daily_change < minimum:
             minimum = daily_change
             min_date = months
+        go_flag = False
 
         
-# comparing the profit to the following month to determine change in profit.
-#adding change of profit to a list
-        
-    #for x in range(len(profit)-1):
-        #daily_change = profit[x+1] - profit[x]
-        #if daily_change > maximum:
-            #maximum = daily_change
-
-        #if daily_change < minimum:
-            #minimum = daily_change
-        #daily_changes.append(float(daily_change))
-
-   
+#Print statement of Analysis
         
 print("Financial Analysis")
 print("---------------------------------------------")
@@ -59,23 +56,23 @@ total_profit = sum(profit)
 print(f"The total profit is: {total_profit}")
 #calculate average change
 avg_daily_change = sum(daily_changes)/len(daily_changes)
-print(round(avg_daily_change, 2))
+print(f'Average Change: {round(avg_daily_change, 2)}')
 print(f'Greatest increase in profits: {max_date} {maximum}')
 print(f'Greatest decrease in profits: {min_date} {minimum}')
 
 
 
 #write Analysis to a text file
-#path = 'Resources/CFK_Analysis.txt'
-#output_file = open(path, "w")
-#output_file.write("Financial Analysis\n")
-#output_file.write("---------------------------------------------\n")
-#output_file.write(f"Total Months: {len(num_of_months)}\n")
-#output_file.write(f"The total profit is: {total_profit}\n")
-#output_file.write(f'{round(avg_daily_change, 2)}\n')
-#output_file.write(f'Greatest increase in profits: {max_date} {maximum}'\n')
-#output_file.write(f'Greatest decrease in profits: {min_date} {minimum}'\n')
-#output_file.close()
+path = 'Analysis/CFK_Analysis.txt'
+output_file = open(path, "w")
+output_file.write("Financial Analysis\n")
+output_file.write("---------------------------------------------\n")
+output_file.write(f"Total Months: {len(num_of_months)}\n")
+output_file.write(f"The total profit is: {total_profit}\n")
+output_file.write(f'Average Change: {round(avg_daily_change, 2)}\n')
+output_file.write(f'Greatest increase in profits: {max_date} {maximum}\n')
+output_file.write(f'Greatest decrease in profits: {min_date} {minimum}\n')
+output_file.close()
 
 
     
