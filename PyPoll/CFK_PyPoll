@@ -1,0 +1,48 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Sun Apr 12 16:47:51 2020
+
+@author: carlyfabris
+"""
+
+import os
+import csv
+
+votes = []
+candidates = {}
+winner = 0
+
+
+election_data_csv = os.path.join("Resources", "election_data.csv")
+with open(election_data_csv) as csvfile:
+    
+    csvreader = csv.reader(csvfile, delimiter = ",")
+    next(csvreader, None)
+    
+    for record in csvreader:
+        voterID = record[0]
+        votes.append(voterID)
+        cand = record[2]
+        if cand in candidates:
+            candidates[cand].append(voterID)
+        else:
+            candidates[cand]= []
+            candidates[cand].append(voterID)
+        
+
+
+        
+total_votes = len(votes)
+print("Election Results")
+print("----------------------------------")
+print(f"Total Votes: {total_votes}")
+print("----------------------------------")
+for x, v in candidates.items():
+    vote_percent = round(len(v)/total_votes * 100, 2)
+    print(f'{x}: {vote_percent}% votes: {len(v)}') 
+    if len(v) > winner:
+        winner = len(v)
+        winner_name = x
+print("----------------------------------")
+print(f'The winner is {winner_name}')
