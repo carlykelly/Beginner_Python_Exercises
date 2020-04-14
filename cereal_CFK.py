@@ -7,10 +7,10 @@ with open(cereal_csv) as csvfile:
     
     csvreader = csv.reader(csvfile, delimiter=",")
     next(csvreader, None)
-        # Set variable to check if we found the video
-    found = False
 
-    # Loop through looking for the video
+
+
+# put each item in the different columns in a list
     for record in csvreader:
         
         cereal_name = record[0]
@@ -31,17 +31,16 @@ with open(cereal_csv) as csvfile:
         cups = record [14]
         rating = record [15]
         
-
+# find cereals with more than 5 grams of fiber (from fiber list created above)
         if fiber >= 5:
 # if only need cereal name and amount of fiber un-comment below
             #print(f"{cereal_name} has {fiber} grams of fiber")
+#printing out info from all cereal with more than 5 grams of fiber
             print(f"{cereal_name}, has an mfr of {mfr}, a type of: {cereal_type}, {calories} calories, {protien}g protien,"\
                   f"{fat}g fat, {sodium}mg sodium, {fiber}g fiber, {carbs}g of carbs, {sugars}g sugar,"\
                   f"{potassium}mg potassium, {vitamins} vitamins, shelf: {shelf}, weight: {weight}, {cups}:cups per serving"\
                   f"rating: {rating}")
             print("")
                 
-            # BONUS: Set variable to confirm we have found the video
-            found = True
 
 

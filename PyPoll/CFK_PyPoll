@@ -8,17 +8,20 @@ Created on Sun Apr 12 16:47:51 2020
 
 import os
 import csv
+#defining variables
 
 votes = []
 candidates = {}
 winner = 0
 
-
+#opening election data
 election_data_csv = os.path.join("Resources", "election_data.csv")
 with open(election_data_csv) as csvfile:
     
     csvreader = csv.reader(csvfile, delimiter = ",")
     next(csvreader, None)
+#adding all voter ids to a list and adding the candidates as keys in a dictionary
+#each vote for a candidate will be a value of their respective key
     
     for record in csvreader:
         voterID = record[0]
@@ -32,7 +35,7 @@ with open(election_data_csv) as csvfile:
         
 
 
-        
+#writing analysis data to console     
 total_votes = len(votes)
 print("Election Results")
 print("----------------------------------")
