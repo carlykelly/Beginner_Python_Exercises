@@ -46,3 +46,18 @@ for x, v in candidates.items():
         winner_name = x
 print("----------------------------------")
 print(f'The winner is {winner_name}')
+
+#exporting results to txt file
+
+path = 'Analysis/CFK_PyPoll_Analysis.txt'
+output_file = open(path, "w")
+output_file.write("Election Results\n")
+output_file.write("----------------------------------\n")
+output_file.write(f"Total Votes: {total_votes}\n")
+output_file.write(f"----------------------------------\n")
+for x, v in candidates.items():
+    vote_percent = round(len(v)/total_votes * 100, 2)
+    output_file.write(f'{x}: {vote_percent}% votes: {len(v)}\n')
+output_file.write(f'----------------------------------\n')
+output_file.write(f'The winner is {winner_name}\n')
+output_file.close()
