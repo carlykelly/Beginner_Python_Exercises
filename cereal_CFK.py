@@ -36,10 +36,10 @@ with open(cereal_csv) as csvfile:
 # if only need cereal name and amount of fiber un-comment below
             #print(f"{cereal_name} has {fiber} grams of fiber")
 #printing out info from all cereal with more than 5 grams of fiber
-            print(f"{cereal_name}, has an mfr of {mfr}, a type of: {cereal_type}, {calories} calories, {protien}g protien,"\
-                  f"{fat}g fat, {sodium}mg sodium, {fiber}g fiber, {carbs}g of carbs, {sugars}g sugar,"\
-                  f"{potassium}mg potassium, {vitamins} vitamins, shelf: {shelf}, weight: {weight}, {cups}:cups per serving"\
-                  f"rating: {rating}")
+            print(f"{cereal_name} has an mfr of {mfr}, a type of {cereal_type}, {calories} calories, {protien}g protien,"\
+                  f" {fat}g fat, {sodium}mg sodium, {fiber}g fiber, {carbs}g of carbs, {sugars}g sugar,"\
+                  f" {potassium}mg potassium, {vitamins} vitamins, shelf: {shelf}, weight: {weight}, cups per serving: {cups}"\
+                  f" rating: {rating}")
             print("")
                 
 
