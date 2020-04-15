@@ -7,22 +7,14 @@ Created on Thu Apr  9 22:52:03 2020
 """
 
 keep_going = 'y'
-
-numbers = int(input("How many numbers would you like to print? "))
+starting_number = 0
 while keep_going == 'y':
-    for x in range(0, numbers):
+    new_number = int(input("How many numbers would you like to print? "))
+    for x in range(starting_number, starting_number + new_number):
         print (x)
-        a = int(x)
+        starting_number = x +1
     keep_going = input("Would you like to keep going? [y]es or [n]o: ")
-    if keep_going == 'y':
-        numbers = int(input(("How many numbers would you like to print? ")))     
-        pass
-    else:
-        break
-    while numbers > 0:
-        a += 1
-        print (a)
-        numbers -= 1
+
 
 print("Thanks for playing!")
 
